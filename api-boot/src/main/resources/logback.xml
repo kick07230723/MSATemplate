@@ -1,22 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
     <property name="LOGS_ABSOLUTE_PATH" value="logs" />
-    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
     <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
         <encoder>
             <pattern>
-                [%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][${springAppName:-}][%class.%method:%line][%X{X-B3-TraceId:-}][%X{X-B3-SpanId:-}] - %msg%n
+                [%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%logger{36}][%class.%method:%line] - %msg%n
             </pattern>
         </encoder>
     </appender>
 
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_ABSOLUTE_PATH}/green-api.log</file>
+        <file>${LOGS_ABSOLUTE_PATH}/users-service.log</file>
         <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][${springAppName:-}][%method:%line][%X{X-B3-TraceId:-}][%X{X-B3-SpanId:-}] - %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%logger{36}][%method:%line] - %msg%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/green-api.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/users-service.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -24,7 +23,10 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="com.nuri.green" level="debug">
+    <logger name="com.example.msa" level="debug">
+    </logger>
+
+    <logger name="org.springframework" level="info">
     </logger>
 
     <root level="debug">
