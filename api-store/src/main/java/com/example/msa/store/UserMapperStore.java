@@ -36,10 +36,19 @@ public class UserMapperStore implements UserStore {
         return userMapper.totalCount();
     }
 
-
     @Override
     public int update(User user) {
         return userMapper.update(new UserJpo(user));
+    }
+
+    @Override
+    public int insert(User user) {
+        return userMapper.insert(new UserJpo(user));
+    }
+
+    @Override
+    public int delete(User user) {
+        return userMapper.delete(new UserJpo(user));
     }
 
 }

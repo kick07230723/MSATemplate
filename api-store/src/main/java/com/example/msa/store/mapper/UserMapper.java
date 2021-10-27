@@ -13,4 +13,6 @@ public interface UserMapper {
     List<User> findByCondition(UserJpo jpo);
     int totalCount();
     int update(UserJpo jpo);
+    int insert(UserJpo jpo);
+    int delete(UserJpo jpo);
 }

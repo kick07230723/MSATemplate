@@ -11,5 +11,6 @@ public interface UserStore {
     int totalCount();
     int count(User user);
     int update(User user);
-
+    int insert(User user);
+    int delete(User user);
 }

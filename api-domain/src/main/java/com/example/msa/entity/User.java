@@ -13,11 +13,9 @@ import org.apache.ibatis.type.Alias;
 public class User {
 
     private String id;
-
     private String name;
-
     private String password;
-
     private String email;
+    private String reg_dt;
 
 }

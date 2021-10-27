@@ -43,4 +43,23 @@
         </where>
     </sql>
 
+    <update id="update" parameterType="userJpo">
+        UPDATE USER
+        <set>
+            <if test="name != null"> NAME = #{name}, </if>
+            <if test="email != null"> EMAIL = #{email}, </if>
+            <if test="password != null"> PASSWORD = #{password}, </if>
+        </set>
+        WHERE
+        ID = #{id}
+    </update>
+
+    <insert id="insert" parameterType="userJpo">
+        INSERT INTO USER ( ID, NAME, EMAIL, PASSWORD, REG_DT )
+        VALUES ( #{id}, #{name}, #{email}, #{password}, now() )
+    </insert>
+
+    <delete id="delete" parameterType="userJpo">
+        DELETE FROM USER WHERE ID = #{id}
+    </delete>
 </mapper>

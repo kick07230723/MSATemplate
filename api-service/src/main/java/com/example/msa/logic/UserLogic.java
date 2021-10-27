@@ -45,4 +45,14 @@ public class UserLogic implements UserService {
     public int update(User user) {
         return userStore.update(user);
     }
+
+    @Override
+    public int insert(User user) {
+        return userStore.insert(user);
+    }
+
+    @Override
+    public int delete(User user) {
+        return userStore.delete(user);
+    }
 }

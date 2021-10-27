@@ -16,6 +16,7 @@ public class UserJpo extends User {
     private String name;
     private String password;
     private String email;
+    private String reg_dt;
 
     public UserJpo(User user) {
         if (user != null) {

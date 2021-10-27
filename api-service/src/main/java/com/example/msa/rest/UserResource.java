@@ -63,10 +63,29 @@ public class UserResource {
         return ResponseEntity.status(HttpStatus.OK).body(message);
     }
 
+//    http://localhost:8085/demo/v0.1/users?id=test1&password=1234&name=tester&email=tester@mail
     @PutMapping
+    public ResponseEntity<ResultMessage> insert(User user, HttpServletRequest request) throws Exception{
+        log.debug("### insert {}", user.toString());
+        Integer count = userService.insert(user);
+        ResultMessage message = ResultUtil.getResultMessage(count);
+        return ResponseEntity.status(HttpStatus.OK).body(message);
+    }
+
+//    http://localhost:8085/demo/v0.1/users?id=test1&password=1111&name=tester&email=tester@mail
+    @PostMapping
     public ResponseEntity<ResultMessage> update(User user, HttpServletRequest request) throws Exception{
         log.debug("### update {}", user.toString());
         Integer count = userService.update(user);
+        ResultMessage message = ResultUtil.getResultMessage(count);
+        return ResponseEntity.status(HttpStatus.OK).body(message);
+    }
+
+//    http://localhost:8085/demo/v0.1/users?id=user1
+    @DeleteMapping
+    public ResponseEntity<ResultMessage> delete(User user, HttpServletRequest request) throws Exception{
+        log.debug("### delete {}", user.toString());
+        Integer count = userService.delete(user);
         ResultMessage message = ResultUtil.getResultMessage(count);
         return ResponseEntity.status(HttpStatus.OK).body(message);
     }
