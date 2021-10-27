@@ -22,9 +22,13 @@ public class UserMapperStore implements UserStore {
     }
 
     @Override
+    public List<User> findByCondition(User user) {
+        return userMapper.findByCondition(new UserJpo(user));
+    }
+
+    @Override
     public int count(User user) {
-        return 0;
-//        return userMapper.count(new UserJpo(user));
+        return userMapper.count(new UserJpo(user));
     }
 
     @Override
@@ -32,24 +36,10 @@ public class UserMapperStore implements UserStore {
         return userMapper.totalCount();
     }
 
-    @Override
-    public List<User> findByCondition(User user) {
-//        return userMapper.findByCondition(new UserJpo(user));
-        return null;
-    }
-
-    @Override
-    public String getPasswdById(String id) {
-        return userMapper.getPasswordById(id);
-    }
 
     @Override
     public int update(User user) {
-        return 0;
+        return userMapper.update(new UserJpo(user));
     }
 
-    //@Override
-    //public void UserJpo(User user) {
-
-    //}
 }

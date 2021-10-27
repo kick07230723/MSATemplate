@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserMapper {
     int count(UserJpo jpo);
     User findById(String id);
-    String getPasswordById(String id);
-    List<UserJpo> findByCondition(UserJpo jpo);
+    List<User> findByCondition(UserJpo jpo);
     int totalCount();
+    int update(UserJpo jpo);
 }

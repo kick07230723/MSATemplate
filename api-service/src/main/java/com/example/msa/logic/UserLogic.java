@@ -15,18 +15,11 @@ import java.util.List;
 public class UserLogic implements UserService {
 
     private final UserStore userStore;
-    public UserLogic(@Lazy UserStore userStore){ this.userStore = userStore; }
 
-
-    @Override
-    public List<User> findByCondition(User user) {
-        return null;
+    public UserLogic(@Lazy UserStore userStore) {
+        this.userStore = userStore;
     }
 
-    @Override
-    public List<User> findByName(String name) {
-        return null;
-    }
 
     @Override
     public User findById(String id) {
@@ -34,20 +27,22 @@ public class UserLogic implements UserService {
     }
 
     @Override
-    public List<User> getPasswordById(String id) {
-        return null;
+    public int totalCount() {
+        return userStore.totalCount();
+    }
+
+    @Override
+    public List<User> findByCondition(User user) {
+        return userStore.findByCondition(user);
     }
 
     @Override
     public int count(User user) {
-        return 0;
+        return userStore.count(user);
     }
 
     @Override
-    public int totalCount() { return userStore.totalCount(); }
-
-    @Override
     public int update(User user) {
-        return 0;
+        return userStore.update(user);
     }
 }

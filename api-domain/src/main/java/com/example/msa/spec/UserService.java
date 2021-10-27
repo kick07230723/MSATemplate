@@ -6,12 +6,10 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> findByCondition(User user);
-    List<User> findByName(String name);
     User findById(String id);
-    List<User> getPasswordById(String id);
-    int count(User user);
+    List<User> findByCondition(User user);
     int totalCount();
+    int count(User user);
     int update(User user);
 
 }

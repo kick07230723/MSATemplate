@@ -13,4 +13,34 @@
         SELECT COUNT(*) FROM USER
     </select>
 
+    <select id="findByCondition" resultType="userJpo" parameterType="userJpo">
+        SELECT * FROM USER
+        <include refid="base_where_list" />
+    </select>
+
+    <select id="count" resultType="java.lang.Integer" parameterType="userJpo">
+        SELECT COUNT(*) FROM USER
+        <include refid="base_where_list" />
+    </select>
+
+    <sql id="base_where_list">
+        <where>
+            <if test="id != null and id != ''" >
+                AND ID = #{id}
+            </if>
+            <if test="name != null and name != ''" >
+                AND NAME = #{name}
+            </if>
+            <if test="email != null and email != ''" >
+                AND EMAIL = #{email}
+            </if>
+<!--            <if test="groupId != null and groupId != ''" >-->
+<!--                AND GROUP_ID = #{groupId}-->
+<!--            </if>-->
+<!--            <if test="startDate != null and endDate != null " >-->
+<!--                AND a.REG_DT BETWEEN date_format(concat(#{startDate},'000000'), '%Y-%m-%d %H:%i:%s') AND date_format(concat(#{endDate},'235959'), '%Y-%m-%d %H:%i:%s')-->
+<!--            </if>-->
+        </where>
+    </sql>
+
 </mapper>
