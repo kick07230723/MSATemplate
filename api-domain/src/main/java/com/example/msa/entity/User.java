@@ -1,15 +1,11 @@
 package com.example.msa.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.ibatis.type.Alias;
 
 
 @Getter
 @Setter
-@NoArgsConstructor
-@Alias("user")
 public class User {
 
     private String id;
@@ -18,4 +14,15 @@ public class User {
     private String email;
     private String reg_dt;
 
+    private Integer offset;
+    private Integer limit;
+    private String sort;
+    private String direction;
+
+    public User(){
+        if(offset == null)
+            offset = 10;
+        if(limit == null)
+            limit = 0;
+    }
 }

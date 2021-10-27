@@ -1,6 +1,7 @@
 package com.example.msa.logic;
 
 import com.example.msa.entity.User;
+import com.example.msa.entity.UserRdo;
 import com.example.msa.spec.UserService;
 import com.example.msa.store.UserStore;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class UserLogic implements UserService {
 
 
     @Override
-    public User findById(String id) {
+    public UserRdo findById(String id) {
         return userStore.findById(id);
     }
 
@@ -32,7 +33,7 @@ public class UserLogic implements UserService {
     }
 
     @Override
-    public List<User> findByCondition(User user) {
+    public List<UserRdo> findByCondition(User user) {
         return userStore.findByCondition(user);
     }
 

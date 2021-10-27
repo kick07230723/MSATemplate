@@ -3,10 +3,7 @@
 <mapper namespace="com.example.msa.store.mapper.UserMapper">
 
     <select id="findById" resultType="userJpo" parameterType="java.lang.String">
-        SELECT *
-        FROM USER
-        WHERE
-        ID = #{id}
+        SELECT * FROM USER WHERE ID = #{id}
     </select>
 
     <select id="totalCount" resultType="java.lang.Integer">
@@ -16,32 +13,14 @@
     <select id="findByCondition" resultType="userJpo" parameterType="userJpo">
         SELECT * FROM USER
         <include refid="base_where_list" />
+        <include refid="order_by_list" />
+        <include refid="page_limit" />
     </select>
 
     <select id="count" resultType="java.lang.Integer" parameterType="userJpo">
         SELECT COUNT(*) FROM USER
         <include refid="base_where_list" />
     </select>
-
-    <sql id="base_where_list">
-        <where>
-            <if test="id != null and id != ''" >
-                AND ID = #{id}
-            </if>
-            <if test="name != null and name != ''" >
-                AND NAME = #{name}
-            </if>
-            <if test="email != null and email != ''" >
-                AND EMAIL = #{email}
-            </if>
-<!--            <if test="groupId != null and groupId != ''" >-->
-<!--                AND GROUP_ID = #{groupId}-->
-<!--            </if>-->
-<!--            <if test="startDate != null and endDate != null " >-->
-<!--                AND a.REG_DT BETWEEN date_format(concat(#{startDate},'000000'), '%Y-%m-%d %H:%i:%s') AND date_format(concat(#{endDate},'235959'), '%Y-%m-%d %H:%i:%s')-->
-<!--            </if>-->
-        </where>
-    </sql>
 
     <update id="update" parameterType="userJpo">
         UPDATE USER
@@ -62,4 +41,37 @@
     <delete id="delete" parameterType="userJpo">
         DELETE FROM USER WHERE ID = #{id}
     </delete>
+
+    <sql id="base_where_list">
+        <where>
+            <if test="id != null and id != ''" >
+                AND ID = #{id}
+            </if>
+            <if test="name != null and name != ''" >
+                AND NAME LIKE CONCAT(#{name}, '%')
+            </if>
+            <if test="email != null and email != ''" >
+                AND EMAIL = #{email}
+            </if>
+            <!--            <if test="groupId != null and groupId != ''" >-->
+            <!--                AND GROUP_ID = #{groupId}-->
+            <!--            </if>-->
+            <!--            <if test="startDate != null and endDate != null " >-->
+            <!--                AND a.REG_DT BETWEEN date_format(concat(#{startDate},'000000'), '%Y-%m-%d %H:%i:%s') AND date_format(concat(#{endDate},'235959'), '%Y-%m-%d %H:%i:%s')-->
+            <!--            </if>-->
+        </where>
+    </sql>
+
+    <sql id="order_by_list">
+        <if test="sort != null and direction != null" >
+            ORDER BY ${sort} ${direction}
+<!--            <foreach collection="order" item="orderby" open="order by" index="index" separator=",">-->
+<!--            </foreach>-->
+        </if>
+    </sql>
+
+    <sql id="page_limit">
+        LIMIT #{limit}, #{offset}
+    </sql>
+
 </mapper>

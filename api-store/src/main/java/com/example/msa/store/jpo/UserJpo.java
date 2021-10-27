@@ -1,6 +1,7 @@
 package com.example.msa.store.jpo;
 
 import com.example.msa.entity.User;
+import com.example.msa.entity.UserRdo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import org.springframework.beans.BeanUtils;
 @Setter
 @NoArgsConstructor
 @Alias("userJpo")
-public class UserJpo extends User {
+public class UserJpo extends User{
     private String id;
     private String name;
     private String password;
@@ -23,5 +24,12 @@ public class UserJpo extends User {
             BeanUtils.copyProperties(user, this);
         }
     }
+
+    public UserRdo toDomain() {
+        UserRdo user = new UserRdo();
+        BeanUtils.copyProperties(this, user);
+        return user;
+    }
+
 
 }

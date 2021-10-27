@@ -2,6 +2,7 @@ package com.example.msa.rest;
 
 import com.example.msa.entity.ResultMessage;
 import com.example.msa.entity.User;
+import com.example.msa.entity.UserRdo;
 import com.example.msa.spec.UserService;
 import com.example.msa.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,7 @@ public class UserResource {
     @GetMapping("/{id}")
     public ResponseEntity<ResultMessage> findById(@PathVariable String id) throws Exception{
         log.debug("### findById : {}", id);
-        User user = userService.findById(id);
+        UserRdo user = userService.findById(id);
         ResultMessage message = ResultUtil.getResultMessage(user);
         return ResponseEntity.status(HttpStatus.OK).body(message);
     }
@@ -40,7 +41,7 @@ public class UserResource {
     @GetMapping
     public ResponseEntity<ResultMessage> findByCondition(User user) throws Exception{
         log.debug("### findByCondition : {}", user);
-        List<User> userList = userService.findByCondition(user);
+        List<UserRdo> userList = userService.findByCondition(user);
         ResultMessage message = ResultUtil.getResultMessage(userList);
         return ResponseEntity.status(HttpStatus.OK).body(message);
     }
@@ -64,7 +65,7 @@ public class UserResource {
     }
 
 //    http://localhost:8085/demo/v0.1/users?id=test1&password=1234&name=tester&email=tester@mail
-    @PutMapping
+    @PostMapping
     public ResponseEntity<ResultMessage> insert(User user, HttpServletRequest request) throws Exception{
         log.debug("### insert {}", user.toString());
         Integer count = userService.insert(user);
@@ -73,7 +74,7 @@ public class UserResource {
     }
 
 //    http://localhost:8085/demo/v0.1/users?id=test1&password=1111&name=tester&email=tester@mail
-    @PostMapping
+    @PutMapping
     public ResponseEntity<ResultMessage> update(User user, HttpServletRequest request) throws Exception{
         log.debug("### update {}", user.toString());
         Integer count = userService.update(user);
