@@ -12,13 +12,12 @@ import org.apache.ibatis.type.Alias;
 @Alias("user")
 public class User {
 
-    private String userId;
+    private String id;
 
-    private String userName;
+    private String name;
 
-    private String userPassword;
+    private String password;
 
-    private String userEmail;
-
+    private String email;
 
 }

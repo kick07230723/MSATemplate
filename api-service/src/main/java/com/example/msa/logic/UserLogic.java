@@ -4,6 +4,7 @@ import com.example.msa.entity.User;
 import com.example.msa.spec.UserService;
 import com.example.msa.store.UserStore;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class UserLogic implements UserService {
 
     private final UserStore userStore;
-    public UserLogic(UserStore userStore){ this.userStore = userStore; }
+    public UserLogic(@Lazy UserStore userStore){ this.userStore = userStore; }
 
 
     @Override
@@ -41,6 +42,9 @@ public class UserLogic implements UserService {
     public int count(User user) {
         return 0;
     }
+
+    @Override
+    public int totalCount() { return userStore.totalCount(); }
 
     @Override
     public int update(User user) {

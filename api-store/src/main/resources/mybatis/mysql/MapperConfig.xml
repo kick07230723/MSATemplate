@@ -16,7 +16,7 @@
     </settings>
 
     <typeAliases>
-        <package name="com.nuri.green.store.jpo"/>
+        <package name="com.example.msa.store.jpo"/>
     </typeAliases>
 
     <mappers>

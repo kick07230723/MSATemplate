@@ -24,12 +24,13 @@ public class UserResource {
         this.userService = userService;
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<ResultMessage> findById(@PathVariable String userId) throws Exception{
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultMessage> findById(@PathVariable String id) throws Exception{
 
-        log.debug("### FindById : {}",userId);
-        User user = userService.findById(userId);
-        log.debug(user.toString());
+        log.debug("### FindById : {}",id);
+        User user = userService.findById(id);
+        if (user != null)
+            log.debug(user.toString());
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("result", user);
@@ -37,6 +38,19 @@ public class UserResource {
         ResultMessage message = new ResultMessage();
         message.setPayload(resultMap);
 
+        return ResponseEntity.status(HttpStatus.OK).body(message);
+    }
+
+    @GetMapping("/totalCount")
+    public ResponseEntity<ResultMessage> totalCount() throws Exception{
+
+        log.debug("### totalCount");
+        Integer count = userService.totalCount();
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("result", count);
+        ResultMessage message = new ResultMessage();
+        message.setPayload(resultMap);
         return ResponseEntity.status(HttpStatus.OK).body(message);
     }
 }

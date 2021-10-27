@@ -11,6 +11,7 @@ public interface UserService {
     User findById(String id);
     List<User> getPasswordById(String id);
     int count(User user);
+    int totalCount();
     int update(User user);
 
 }

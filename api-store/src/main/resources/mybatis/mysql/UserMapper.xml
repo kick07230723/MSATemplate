@@ -2,11 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.msa.store.mapper.UserMapper">
 
-    <select id="findById" resultType="user" parameterType="java.lang.String">
+    <select id="findById" resultType="userJpo" parameterType="java.lang.String">
         SELECT *
         FROM USER
         WHERE
         ID = #{id}
+    </select>
+
+    <select id="totalCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM USER
     </select>
 
 </mapper>

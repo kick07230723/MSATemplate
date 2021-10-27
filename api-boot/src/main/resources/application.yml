@@ -6,6 +6,10 @@ spring:
   application:
     name: user-service
 
+#mybatis config
+mybatis:
+  config-location: classpath:mybatis/mysql/MapperConfig.xml
+
 ---
 #jdbc
 spring:

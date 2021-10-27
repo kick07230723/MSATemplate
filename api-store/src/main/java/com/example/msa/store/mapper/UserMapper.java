@@ -12,4 +12,5 @@ public interface UserMapper {
     User findById(String id);
     String getPasswordById(String id);
     List<UserJpo> findByCondition(UserJpo jpo);
+    int totalCount();
 }

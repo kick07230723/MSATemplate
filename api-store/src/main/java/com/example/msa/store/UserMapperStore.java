@@ -28,6 +28,11 @@ public class UserMapperStore implements UserStore {
     }
 
     @Override
+    public int totalCount() {
+        return userMapper.totalCount();
+    }
+
+    @Override
     public List<User> findByCondition(User user) {
 //        return userMapper.findByCondition(new UserJpo(user));
         return null;

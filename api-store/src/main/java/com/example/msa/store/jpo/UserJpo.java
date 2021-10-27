@@ -11,13 +11,12 @@ import org.apache.ibatis.type.Alias;
 @NoArgsConstructor
 @Alias("userJpo")
 public class UserJpo extends User {
+    private String id;
 
-    private String userId;
+    private String name;
 
-    private String userName;
+    private String password;
 
-    private String userPassword;
-
-    private String userEmail;
+    private String email;
 
 }
