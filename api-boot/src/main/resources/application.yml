@@ -10,6 +10,14 @@ spring:
 mybatis:
   config-location: classpath:mybatis/mysql/MapperConfig.xml
 
+#eureka config
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
 ---
 #jdbc
 spring:
